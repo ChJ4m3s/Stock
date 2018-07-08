@@ -1,0 +1,338 @@
+<html>
+    <head>
+        <style>
+            p {
+                text-align: justify;
+            }
+            ol {
+                counter-reset: item;
+            }
+            li {
+                display: block;
+            }
+            li:before {
+                content: counters(item, ".") " ";
+                counter-increment: item;
+            }
+        </style>
+    </head>
+    <body style="max-width: 20cm;">
+        <h1>Documentazione Stock</h1>
+        <section id="0">
+            <h2>Indice</h2>
+            <ol>
+                <li><a href="#1">Introduzione</a></li>
+                <li><a href="#2">Requisiti funzionali</a></li>
+                <li><a href="#3">Webapp</a>
+                <li><a href="#4">Acquisizione dati</a></li>
+                <li><a href="#5">Database</a></li>
+            </ol>
+        </section>
+        <section id="1">
+        <h2>1. Introduzione</h2>
+        <p>Stock &egrave; un'applicazione che permette di controllare l'andamento dei titoli della borsa italiana. L'applicativo &egrave; composto da una webapp e un'applicazione per dispositivi Android. Per accedere alle informazioni sui titoli di borsa &egrave; neccessario registrarsi all'applicativo e, successivamente, effettuare il login. L'account personale memorizza i titoli preferiti da mostrare nella pagina principale. Il servizio &egrave; composto, inoltre, da un database, costantemente aggiornato, che memorizza lo storico di ogni titolo di borsa.</p>
+        </section>
+        <section id="2">
+            <h2>2. Requisiti funzionali</h2>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF0</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Registrazione all'applicazione.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione:</td>
+                        <td>Registrare un nuovo utente all'applicazine. Sono richiesti nome, cognome, email e password.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente non registrato.</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF1</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Accesso area personale.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione:</td>
+                        <td>Sono richiesti email e password per accedere all'area personale. Se le credenziali sono corrette si accede alla pagina principale, altrimenti viene visualizzato un messaggio di errore.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente registrato e non loggato.</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF2</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Aggiunta titolo.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione:</td>
+                        <td>Ogni utente pu&ograve; aggiungere un nuovo titolo da mostrare nella sua pagina principale.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente loggato.</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF3</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Visualizzazione titoli.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione</td>
+                        <td>Vengono visualizzati nella pagina principale i titoli della borsa italiana collegati all'utente che ha effettuato il login. Per ogni titolo viene visualizzata la sigla, il prezzo dell'azione, la variazione in percentuale, l'ora dell'ultimo aggiornamento, il valore minimo, il valore massimo e il valore qta. I dati sono disposti in forma tabellare e aggiornati al momento della visualizzazione.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente loggato.</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF4</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Rimozione titolo.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione:</td>
+                        <td>Ogni utente pu&ograve; rimuovere un titolo che non verr&agrave; pi&ugrave; mostrato nella sua pagina principale.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente loggato.</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF5</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Grafico andamento titolo.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione:</td>
+                        <td>Per ogni titolo &egrave; possibile visualizzare un grafico lineare del suo andamento. Nell'asse delle ascisse &egrave; mostrata la data, nell'asse delle ordinate, il valore del titolo per la relativa data.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente loggato.</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF6</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Aggiornamento database.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione:</td>
+                        <td>Aggiornamento del database con i nuovi valori dei titoli di borsa.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente loggato.</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <table border="1" style="width: 20cm;">
+                    <tr>
+                        <td style="width: 5cm;">Id:</td>
+                        <td>RF7</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Nome:</td>
+                        <td>Logout.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Descrizione:</td>
+                        <td>Uscire dal proprio account.</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5cm;">Attore:</td>
+                        <td>Utente loggato.</td>
+                    </tr>
+                </table>
+            </p>
+        </section>
+        <section id="3">
+            <h2>3. Webapp</h2>
+            <h3 id="3.1">3.1 Descrizione</h3>
+            <p>La webapp permettere di accedere all'applicativo tramite web browser e una connessione a internet. Il sito &egrave; sviluppato in locale ed &egrave; accessibile tramite l'indirizzo: <a href="http://192.168.1.8:8080/Stock/">http://192.168.1.8:8080/Stock/</a>. Per accedere al sito &egrave; occorre che la macchina locale abbia avviato il server. Le pagine dinamiche sono sviluppate nel linguaggio Java e realizzate con Applet e pagine JSP.</p>
+            <h3>3.2 Struttura</h3>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-2\&quot;&gt;7VpNc9sgEP01vnqMsOLk2LhJe2hPPrQ5EokgEqTVIPzVX1+Q0FdI0iSNcWaMDx54LAvax2qfZU3wMt99k6TMfkJKxSSapbsJ/jqJosXFTH8bYN8AMZ43AJM8bSDUAyv+h1rQzmNrntJqZKgAhOLlGEygKGiiRhiRErZjszsQ41VLwqgDrBIiXPQXT1XWoNE8nvUD3ylnmV160Q7ckuSBSVgXdr1JhO/qTzOck9aXta8yksJ2AOGrCV5KANW08t2SChPaNmzNvOtnRrt9S1qo10yI7TbUvr10mupI2C5IlQGDgoirHr2sL48aBzPdSyDniW1nKhe6iXST7rj6beBpbHs3dqS7ZDOjUkSqL4YxDRRQ0Ba75kJYG1qkrUUiSFWZ5QxoTYzPe6rU3h4jslagoX7vPwDKdm0l4aGj1CB3UCg7EUW2vwQBso4GntUfjTdxMsF5NtIWqmAtE2sV2bNLJKPWCncs6+ShkFMl99pEUkEU34y9E3uMWWfXU6kbls2nmT3zz6yOhNwPhkz3piX6tFmfe2LdQ0IPSJ9Nozjw/hLvaOGL+MbFhoi1dco1p7vpfVU6J2KbcUVXJan3vdUFfMz0+DiMCGSGEdsW5JaKy67etWHsaHVirwkcxNqWRe1TkpTTngfr4LVUEcFZYQ6LdkFlx92GSkV3L7Pn0mInaPfNlP1Ylmx7LdAqnGygAtpZ/8MjQg5dB03gcf6OsrceO6X8xW7+Rp7SF+FD044c2k+cWm8leR6U2Cei3VtFxk5FlpTxShepUJTfU5TR2eOi7K8qn/tP4VNK07mbpr6ytJV2Pgtvd3fubtWnWZSfoN2b3oqOKLMD7cd6KBYdXGYHLfYG2r1psbmjxQQwXgQh9h4h1qmsIwgxdIQ/LEICDyTZowT29SMaHfzvjCDT3sC7N5l2EWTaJ6LdW71eOPW6lKBLJA0V+0Mq9rnHin34ZychhZ9JYXRMzY1c0c3My0I8CUn8EUkc4dhfErs35BSSda63rg8NFNOaqUDpGymN/31bRtHHUKq7/Vtl9djgzT189Rc=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h3>3.3 Work flow</h3>
+            <p>Sono mostrati i work flow per ogni azione della webapp. Le linee tratteggiate indicano i tag da cui dipende una pagina jsp.</p>
+            <h4>Aggiungere un titolo</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot;&gt;7VdLT+MwEP41OYLyaHgcaYHdA0hIRdrlaOJpYnA8WWf64tevnThJTVqpaOGyoofK83k8nsw3X6YNklm5+aFZVdwjBxnEId8EyXUQx+eXofm2wLYF0mTSArkWvIWiAZiLN3CgO5cvBYfacyRESaLywQyVgow8jGmNa99tgdK/tWI5jIB5xuQY/SU4FS0aT9Jw2PgJIi/c1efdxjPLXnONS+XuC+Jk0Xza7ZJ1sZx/XTCO6x0ouQmSmUakdlVuZiBtabuyteduD+z2eWtQdMyByWV7YsXkErqUm8Ro2xUDuKmNM1FTgTkqJm8GdNo8MNiQobEyLEXm1gWV0iwjs+wf1eI1MU1XlikDKFTQYbdCSucDincemWR1bYNa0LnYmC9AtHXtw5aEBhoyvEOsurtJ42tPpUUWqMgdjGJnz1Cibp45CZuPwdtq2BIcrLCDalzqzHnFrqzmiXJwbpOLnl8jG8ASSG+NjwbJSKz8+Mw1cN77DSSaheNxP6dpPOJ0uiRCFdhmOPuztM01veL8UZChr0dGxBNsyOdQQy3e2HPjYKtToVDUpJpOg/TaIEyKXFnGTHnAFHO6Ak3CKOvKbZSC86ZpJHsGOe31slN8p5iPkmRvgs2+94PLeJDdLn2tBMa8uEgn4WmUtqe2XuyjeXOhH2ythrhnXsyTaOIHwMWiNp3znvY+v6M6IR6ru9K4EBJOX+pqxPe6EATzijVdvDYv9nfkeyr35Jxbfbr1AV57kY+UaOS8j/xcMy5gINwFOLYnRo14sElGWj7YC5PQI60z18OIuHBQsTMckvDfNd2+PDwm56BX0rZIOEj5m9CPEXoEo5dfxGh6/lWDFjaCflv4NHXWUz9RTZI7W9Z82jeeOauL5prIGQ+MTNFVg8Rh/P9P8DQdT/D4wKT4/AmejtT+yHIDNDK/F6aSKr8TNX0r/sOKfzfLw3Sk+Cj6HMkbc/gh307v4c9ScvMX&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h4>Accedere al profilo personale</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-2\&quot;&gt;7VnbUtswEP2aPML4EifkkQRoH+gMMzDT8ijsjS1QrFRWbnx9V/b6FiU0oQnMlPDAWEcrWd6zZ3ftdPzRZPlNsWnyQ0YgOp4TLTv+Vcfz+gMH/xtgVQCB3y2AWPGogNwauOevQCCti2c8gqxlqKUUmk/bYCjTFELdwphSctE2G0vRvuuUxWAB9yETNvqTRzopUK8bOPXEd+BxQrfulxNPLHyJlZyldL+O54/zv2J6wsq9yD5LWCQXDci/7vgjJaUuribLEQjj2tJtxbqbLbPVuRWkepcFQbFgzsQMyhPn59Kr0hcQoWtoKJVOZCxTJq5rdJg/L5gdHRyFcsJDuk70ROCli5fVkxo800zpS0MUAqlMocRuuBBkA2lUWoSCZZnZ1IBkYvZ8Bq1XFD1spiVC9QlvpZyW99ZKvlRMGmQsU00LXY/GIymkyp/Zd/I/xAtvGBdsdTBBmZypkKzIifhAMZBVtyIXNQNyAlqt0ESBYJrP27szit64sqsZxAsicTOhVWAdnEBYcv3LwOf9gIaP5VSKpyzmgnL4eOLdQBf/yHu+FP3BVg2DqeSpzho73xkADcr8S0FA2XewlgPWrIPBW+Z4Udy+Dr/qOXaLSNfKMaGULxyM89gcw249YDUsdTv2FGT8lT3lBoYecgBaB8NOcIUIEzxOTcggP4BsDuegNMeMfkkTEx5FebAL9gRiWOXpBvuUqfeNEnMnWG6qS3TiOt0346eR71uhQTs5507fpYDaL1osgs/KJat2lS13kONxhvG6nmX2pNlimWNOWZ4/Z1OL4EXCNdxPWa6bBXYQa2y30lErgcQmI9D1FiKrtGJpHxPIJrZjxSIONcO0wa5BYEXe1qiwssdW8t22Issyvah7kQuySBpdiO9sj4xd60f/1BAcoTB07cLQ+6CGoGsRKmTM05Mu36NLz/k0YQ5OwjyCMHuH79h2JdS1Gc2VaU44C0PIsi/aGA3elOCZc46v2wfpi9aq7NlR+iL3A17ITu9jO6v7o97D3QtL3YBeVF9U0+7fXnZc/yCS9tuKDo4g6J5F7D2ouTD7OrdFAj+1Vfu1VX7v09oqW6ZTJdF1cGqQ38NkEHwak27v+IXWa1Zap11pvf+k1EYsS3KPuDS4YxrjI80Rz/HeXY3Lr1nNcux9VDm2P089sBiBEXpBSZRX8UXypPc9M3db7u4GvbvusQRvf6u65elLx/Qfvd8z8xPakN6oyuFhui+UXUb+brhVwFhvaMW0keQwwxjiafyQ6/Ose4i2a5+viUE7KTsWSf0NHHn7c4TD+rfLoreqfx/2r/8A&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h4>Registrare un nuovo account</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-2\&quot;&gt;7VhNU9swEP01PsI4dpyUIwnQHuhMp+lM26OwN7ZAllxZ+eLXV7JXtoUCJC2UQ8khIz2t1qt9+9ZKgnhebj9KUhWfRQYsiMJsG8QXQRRNz0L9bYBdCyTxuAVySbMWGvXAgt4DgrgvX9EMasdQCcEUrVwwFZxDqhyMSCk2rtlSMPepFcnBAxYpYT76nWaqaNFonIT9wiegeYGPntqFG5Le5VKsOD4viOJl82mXS2J9oX1dkExsBlB8GcRzKYRqR+V2Dsyk1qat3Xf1yGoXtwSuDtmQtBvWhK3ARtzEpXY2F5Dp1OBUSFWIXHDCLnt01pwXjMdQz1JR0hTHhSqZHo70sDupwWtFpDo3RGmACw4Wu6KMoQ3wzFqkjNS1cWpANDE+b0GpHVYPWSmhoT7CayEq+2wlxV3HpEGWgivcOIpwPhdMyObMcdh8NN5mw6Tg0QQjVIuVTNEKk6gPlANajTtytWZAlKDkTptIYETRteudYPXmnV3PoB4gifsJjTxCqeZme3pbVx6zm4IqWFSkCXujhewy5tLq8JcbQnDMyA2wWVf3Nosdq17qNX+DVKM8tE9JMgo9DejgUKYIozk3taJdgOyoW4NUsH2aPJ8WuwFVil3MqmXTt4QPaFEMmkEc/j2N03ddvoIux74uJ/9Il2OPUAk5rXWpvkvzT6QZhW+mza6yXlyLsKXqh4FPE5z9tCtcBzlYMlO79j8pePKGb1b/1Qo6i9IrBl3U6oFcoab35KYxMGevBOWqCSWZBcnFPokYcVB9IT3HhZJmWVNIj2h6KNfjKNgjQ7xWY8T9bXVIzjP6PAlPw4mr0HZ2MC/o+ovJ1cCv6/RkNHU9iOWy1pXxkNcuwIOonnhML0CumfEbfsW2/d6yj23Z8eTZlj0KX6lnj/wL1TXld4Gp7Mmvlfm5NZMdsxZ5GWnr9lljygeZZbBUe3SuTGud1bqMKM+/NX32ZPwSmj7m1pu4PIUeT2d7aIqOp0lP+5+6rU77vxPiy98=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h4>Rimuovere un titolo</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-2\&quot;&gt;7VZNc5swEP01HJvhs26OsZO0h/RSZ6bNUYE1KBZaKtZf+fWVYAETnDaZtD10ysGjfVqtVu/pYbxoUe4/GlEVnzED5YV+tveiSy8MZ+e+/XXAoQWSKG6B3MishYIBWMpHYJDX5RuZQT1KJERFshqDKWoNKY0wYQzuxmkrVONdK5HDBFimQk3RrzKjokXDOPGHiU8g84K3nnUT9yJd5wY3mvfzwmjVPO10KbpanF8XIsPdERRdedHCIFI7KvcLUI7ajrZ23fUzs33fBjS9ZEHSLtgKtYGu46YvOnRcQGap4RANFZijFupqQOfNecFV9G2UYilTHhdUKjsM7LA/qcNrEoYunFAW0Kihw66lUpwDOusyUiXq2hV1IKe4mg9AdODbIzaEFho6vEGsur3J4LpX0iEr1MQLg5DjBSo0zZkjv3ks3rLhKHiWYIZq3JiUs5hEe6AcOCvuxbWeASyBzMGmGFCC5HZcXfDtzfu8QUE7YBFPCxpOBM2dQ9Ozh7qaSLsrJMGyEk3fO5s3lmys60jA3CnCYyXuQc37i9/R2Ms64d4KeMQ1+8PWNCKTMOjABV4qlVAy1+6y2BJgeu22YAj2P1dvqgsv6GzKr7GYw93wTvjAUHH0Noj8t+vY1fj9RoS9pG8OPks4uusdZ5s8mnLh3Sn1/3H7xlP7hn/JvvHEvkswW2XbCP0vUOIWbiVZrf87+bVODn5p5SD8Q14OZhNVb6Ree26/99837r9+bhpxh3iisD06PREVavko7psER1uFUlPTZjL3kktHpDVVzYQf8apg5Uo5PqX95rlgmJzh5rW9RFLnt4373sWvNtubVAqeqBQlE5XOT4gUvl4kGw5fWc3c0ZdsdPUD&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h4>Uscide dall'account</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot;&gt;7VdLb6MwEP41HFsRHn0cm7TdPWSllXLYswMDuDUMa0we/fVr4wHikkhpte0pHCL783g8nm++gXjhotz9kKwufmEKwgv8dOeFj14Q3N77+tcAewvEYWSBXPLUQrMRWPE3IJD25S1PoXEMFaJQvHbBBKsKEuVgTErcumYZCvfUmuUwAVYJE1P0D09VYdEgiv1x4SfwvKCjb/uFNUtec4ltRed5QZh1j10uWe+L7JuCpbg9gMInL1xIRGVH5W4BwqS2T5vd93xidYhbQqXO2RDd2x0bJlroQ+4CU/s+GZDq3NAUpSowx4qJpxGddxcG49LXswRLntC4UKXQw5keDlc1eKOYVA+GKQ1UWEGPPXMhyAaqtLdIBGsa49SAZGJ8voBSeyof1irU0BjhErHuz1YSXwcqDZJhpWjjLKD5AgXK7s6h3z0at9kwKTiZYYIabGVCVgGlVd8oBzKL7gZ+tWwAS1Byr20kCKb4xvXPqIDzwW4kUQ+Ix+OcxsGE0yWvXj1TCjd/W1Na8yW22KpxPiFdwU65/Elo+BtbdwYmMzXySnVhxnMvftQIEzyvDFs6NaATOd+AVFyr6oEWSp6mXcEItgYxH7RykHhSy0cJMifB7lhvoIhHyR1SZ8t/ygl5uvKvZ7HdtXd8n80Zuf5tcjX6vXF8Xs0i1wFmWaOr5j3lQ3xnVUEwVXYtMeMCrl+aesL3tuAKVjXrKnirm/o78h2FO1LOjTZpfILXQeATFWopHyM/lyzlMBJODs6tiUkhniySiY5P1kLkO6T10+34ergjqDh4MYT+f9BzdOnRX9CjbT92e3QcflOP7g8/4HQFciOM7P2lzk2rLhL9qETP0Oj9V2k0nPDJNRu7S6/9DJHh7XcRqafjx7Z9y45/aMKnfw==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h4>Visualizzare grafico</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot;&gt;7VdNT+MwEP01OYLy0RQ40vKxB1ZCAmmXo0mmjqmTyToubfn1a8eTpCZUKuyi1UrkUHmex2N73rxMGiTzcnOtWF18xxxkEIf5Jkgugjg+OQvNrwW2DkiTiQO4ErmDogG4Ey9AIK3jK5FD4zlqRKlF7YMZVhVk2sOYUrj23RYo/V1rxmEE3GVMjtEfIteFQ+NJGg4T30DwgrY+6SYeWbbkClcV7RfEyaJ93HTJuljk3xQsx/UOlFwGyVwhajcqN3OQNrVd2ty6qz2z/bkVVPqQBZMzt+KZyRV0R24PprddMiA3uSETlS6QY8Xk5YDO2guDDRkaK8NSZDQudCnNMDLD/qoWbzRT+twyZYAKK+iwKyEl+UCVdx6ZZE1jg1qQXGzMJ9B6S+XDVhoNNJzwBrHu9tYKlz2VFllgpWlhFJM9R4mqvXMSto/BXTZsCvZmmKAGVyojr5jSam7Egdwmpz2/RjaAJWi1NT4KJNPi2Y/PqIB57zeQaAbE49ucpvGI0xtRLQNbCtNfK1tas3uhDXO9OeJcw0b79CloxAt7bB1sYmoUlW5Pmc6C9MIgTApeWbJMZsDkcfYMSgsjqnOaKEWet/Ui2SPIWS+VnbyTWN7Lj90JNm+9GujEg+J2mXPVP6aEIh2Fx1HqVm292AdTRqFvba6GuFMv5lE08QPgYtGYonnNeH++g4ogHgu7VrgQEo6fmnrE97oQGu5q1hbw2rzTX5HvCdxTMrfSpPEeXnt9j0RolPwW+VyxXMBAOAU4tCZGhbi3SEYy3lsLk9AjrTPXQ3c4JajY6QtJ+Odydu8Nj0lum67Ivpj8CJP9R8Z+Ks8+icp0+lnNFTZC/7TwcUrWQ99FzSF3pqz58F+35Jw1RZuPiIxbpk11VC0Sh/GHu3aa/suunY5kfs+4AW6VaR7XTvFfan+32kNf7VGYjuQeRX9H78Ycvtxdzx7+HSWXvwE=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h4>Visualizzare valori dei titoli</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot;&gt;7VVLb5tAEP41XCMeRm6Oteu0h1aqZEttjmMYwyYLg5Z1bPrrOwvDKzRVquYYDmjnm8fuzvcNeNG2uH42UOXfKEXthX569aJPXhiub31+O6DpgDhadUBmVNpBwQjs1S8UUPKys0qxngVaIm1VNQcTKktM7AwDY+gyDzuRnu9aQYYLYJ+AXqI/VGrzDg1XsT86vqDKctl63TuOkDxmhs6l7OeF0al9OncBfS2Jr3NI6TKBop0XbQ2R7VbFdYvatbZvW5d394J3OLfB0r4mIbztMp5An+XulaGT0njzUFdyRtv0fbnkyuK+gsTZF6beiza5LTRbAS/bi6Mr7bM13M0ZmYa6lrWGI+rN0KktaTLsKqlEl2YNPQ5td2X5OLoPGhvKNQ2kii/6rMCJSiuSCkKxJ+l++zAOWmUlYwmXQHZupBVoLF5f7GcwsMTiRyrQmoZDJGElvDZz8zKK6INA+UQ+kWAgss2GuiN1vBD2/sxkvF6whSmLWkwyNqeMStC7EX1GWEKFSmQ9YRWvyv508E0s1r0EcVNMM3E5816yZuynUOftNoEY38Fyz8sWCf2wpR2M/ehmdyoFxu6Uu7Psl/YRidOTO60DJcQVf0BrG2EfzpYYGq/+lajqj7dU2Stl07XZ9fbvGmEq6GwSiYpj+YyBydBOh2+pJYMarHqa1/8vbcSLKT9AxsBBWY0HOLIY3kf9H0c9jGejHvjxYtaD4G2Gnc3xl9D6Jr/daPcb&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h3 id="3.2">3.4 Dipendenze</h3>
+            <ol>
+                <li><strong>GlassFish Server</strong>: funzionamento delle pagine dinamiche.</li>
+                <li><strong>AdminLTE</strong>: tema del sito e realizzazione grafici.</li>
+                <li><strong>MySQL connector</strong>: driver per il collegamento al database.</li>
+                <li><strong>Jsoup</strong>: libreria per il parsing di siti web.</li>
+                <li><strong>Connessione internet</strong>: accesso al database e acquisizione dati.</li>
+            </ol>
+            <h3 id="3.3">3.5 Test</h3>
+            <p>Per il testing della piattaforma sono stati utilizzati i seguenti browser: Safari e Google Chrome. I dispositivi sui quali &egrave; stato eseguito il test sono: MacBook e iPhone.</p>
+        </section>
+        <sectin id="4">
+            <h2>4. Acquisizione dati</h2>
+            <h3>4.1 Descrizione</h3>
+            <p>I dati mostrati nell'applicazione sono acquisiti dal sito: <a href="http://www.traderlink.it/quotazioni/borsa-italiana.php?modo=lista&lista=ftsemib&refresh=1">traderlink.it</a>. I dati sono acquisiti e mostrati ogni volta che un utente accede all'applicazione. I dati sono registrati nel database giornalmente alle ore 22:00 da un processo sempre attivo in un Raspberry Pi.</p>
+            <h3>4.2 Dipendenze</h3>
+            <ol>
+                <li><strong>MySQL connector</strong>: driver per il collegamento al database.</li>
+                <li><strong>Jsoup</strong>: libreria per il parsing di siti web.</li>
+                <li><strong>Connessione internet</strong>: accesso al database e acquisizione dati.</li>
+                <li><strong>traderlink.it</strong>: lettura dei dati.</li>
+                <li><strong>Raspberry Pi</strong>: esecuzione processo di acquisizione dati.</li>
+            </ol>
+        </section>
+        <sectin id="5">
+            <h2>5. Database</h2>
+            <h3>5.1 Descrizione</h3>
+            <p>Il database registra se seguenti informazioni: dati relativi agli utenti registrati, lo storico dei valori delle azioni, i titoli collegati a ciascun utente, lista dei titoli della borsa italiana. Il database &egrave; sviluppato con il linguaggio MySQL ed &egrave; accessibile in remoto. Il servizio di hosting del database &egrave; offerto da <a href="http://www.freesqldatabase.com">freesqldatabase.com</a>.</p>
+            <h3>5.2 tabelle</h3>
+            <h4>Stock</h4>
+            <table border="1" style="width: 20cm;">
+                <tr>
+                    <td style="width: 5cm;">Title</td>
+                    <td>varchar - foreign key(Titles)</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Code</td>
+                    <td>serial - primary key</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Price</td>
+                    <td>float</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Var</td>
+                    <td>float</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Time</td>
+                    <td>time</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Min</td>
+                    <td>float</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Max</td>
+                    <td>float</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Qta</td>
+                    <td>float</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Date</td>
+                    <td>date</td>
+                </tr>
+            </table>
+            <h4>Titles</h4>
+            <table border="1" style="width: 20cm;">
+                <tr>
+                    <td style="width: 5cm;">Title</td>
+                    <td>varchar - primary key</td>
+                </tr>
+            </table>
+            <h4>UserTitle</h4>
+            <table border="1" style="width: 20cm;">
+                <tr>
+                    <td style="width: 5cm;">Title</td>
+                    <td>varchar foreign key(Titles)</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">User</td>
+                    <td>varchar foreign key(Users)</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Code</td>
+                    <td>serial - primary key</td>
+                </tr>
+            </table>
+            <h4>Users</h4>
+            <table border="1" style="width: 20cm;">
+                <tr>
+                    <td style="width: 5cm;">Name</td>
+                    <td>text</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Surname</td>
+                    <td>text</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Email</td>
+                    <td>varchar - primary key</td>
+                </tr>
+                <tr>
+                    <td style="width: 5cm;">Password</td>
+                    <td>text</td>
+                </tr>
+            </table>
+            <h3>5.3 Schema</h3>
+            <div class="mxgraph" style="max-width:20cm;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\&quot; version=\&quot;6.5.7\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot;&gt;7VhNc9owEP01PiZj2RjIMZCkPbQznaGdJkdhC1uN7GVkESC/viu8/sImQyYkORAOjPZptZb27VuEHX+abr5pvkx+QiSU47nRxvFvHM8bXbn4bYFtAQT+oABiLaMCYjUwk8+CQFoXr2Qk8pajAVBGLttgCFkmQtPCuNawbrstQLWfuuSx6ACzkKsu+ldGJilQbxC49cR3IeOEHj0qJ+Y8fIw1rDJ6nuP5i92nmE55GYv884RHsG5A/q3jTzWAKUbpZiqUTW2ZtmLd3YHZat9aZOaYBV6x4ImrFR39tzQKU1/szmzLjKwTacRsyUNrr5F0x58kJlVoMRzujixsUBet6lTWiBXPcxorPhdqUuVoCgo0TmWQCbvMaHisEm7DLqRSpVOdSoypeSTxiHsBFpAZKibmkd1Y7u4+iHMl4wyxEEMInJxQFoQ2YnMwk6ziB8teQCqM3qILLfCGRGlZ8mSu6/opVZE0KscnjFPFxlXgmjUcEHH9JF512BIRljOZoE0CMWRc3dboHmEhpDKkcYNVsZHm3sKXAVkP5IRJ0dvGlDUfaFWL/dxwba6tJJs8I3Yn7XkoWFR6hLZY7FYsSC425j9hzJao5SsDCNXn+gGwLJ/dLaEja6LIoU3cywWAeYaVDslrSM2J61iYhqS6ZaKF4kY+taO/hXXm92u3UwxY02ZPrSKXz3y+c7BnX4LMzG4rwcQJbvoUYrUhsUFe00Qqo2hXSAck3VTr6yjoUSG1edpx3T2b5Fy9qE73ko3YoCVQin00LxT7l81VHZgN+4KW62GxyLEu9lmt9ncc0W6H0lPru6nuWtD3pVup7mLuzPU9/ih9Dzr6/pOjFs9T3sztT3ut78Aft6TonUTfQSvmBRu9g8CHvUT3N/Ove9gr72HsAy9ijHX4OnGnLsc9nbq6lp1npx594k3swL+oc23VLwv0Anu1P97vqydp1oO9oMN3aNajDtczA+HjV6N+baMefNr/5XHv7+3XO4+3UviOP7Vo1i/FCtXWLx792/8=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+            <h3>5.4 Dipendenze</h3>
+            <ol>
+                <li><strong>freesqldatabase.com</strong>: hosting database.</li>
+            </ol>
+        </section>
+        <script type="text/javascript" src="https://www.draw.io/js/viewer.min.js"></script>
+    </body>
+</html>
